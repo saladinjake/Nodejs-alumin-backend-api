@@ -20,6 +20,28 @@ const userSchema = new mongoose.Schema({
     role:{
         type:String,
         default:0
+    },
+
+    membership:{
+      type:String,
+      default:"regular" // financial
+    },
+
+    phone:{
+       type:String
+    },
+    dob:{
+      type:String
+    },
+
+    state:{
+      type:String
+    },
+    address:{
+      type:String
+    },
+    country:{
+      type:String
     }
  
 })

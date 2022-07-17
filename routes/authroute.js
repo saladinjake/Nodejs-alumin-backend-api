@@ -12,16 +12,11 @@ const rolesChecker = require('../middleware/roleschecker')
 const precheckController = require("../controllers/precheckController")
 
 
-
-
-
-router.post("/register", (req, res) => {
-  
+router.post("/register", (req, res) => {  
     const {name,email,password, lastname, passwordRepeat} = req.body 
     if(!email || !password || !name || !lastname){
        return res.status(422).json({error:"All fields are required"}) 
     }
-
     if(password!=passwordRepeat){
        return res.status(422).json({error:"password do not match"}) 
     }
@@ -56,8 +51,6 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    
-
     const {email,password } = req.body
     if(!email || !password){
        return res.status(422).json({error:"please add email or password"})
@@ -83,15 +76,12 @@ router.post("/login", (req, res) => {
             console.log(err)
         })
     })
-
   });
-
   router.get("/protected",requireLogin,(req, res) => {
       return res.json({message:"authenticated"})
   })
-
   // router.get('/authcheck/user', rolesChecker(), precheckController.isUserAuthenticated);
   // router.get('/authcheck/admin', rolesChecker([Roles.admin,Roles.siteAdmin]), precheckController.isAdminAuthenticated);
 
-
+ 
 module.exports = router
