@@ -14,7 +14,7 @@ const rolesChecker = require('../middleware/roleschecker')
 
 
 //All Contestants
-router.get('/', rolesChecker([Roles.admin,Roles.siteAdmin]), (req, res) =>
+router.get('/', rolesChecker([Roles.admin,Roles.siteAdmin, Roles.user]), (req, res) =>
 {
            
   Contestants.find({}, (err, result) => {
