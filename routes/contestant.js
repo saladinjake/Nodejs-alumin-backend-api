@@ -35,16 +35,18 @@ router.get('/', rolesChecker([Roles.admin,Roles.siteAdmin]), (req, res) =>
 
 router.post("/", (req, res) => {
   
-    const {position,party, userIds, imageUrl} = req.body 
-    if(!position || !userIds || !party){
+    const {position,party, imageUrl , dateVal, contestants} = req.body 
+    if(!position || !contestants || !party){
        return res.status(422).json({error:"Position/Title or type and candidates are required"}) 
     }
-
+    console.log(contestants )
    
     const potentialCandidate = new Contestants({
         position,
         party,
-        candidates:[{id: userIds, imageUrl: imageUrl}]    
+        reg_time:dateVal,
+        //candidates:[{id: userIds, data: userIds}] 
+        candidates: contestants   
     })
     
 

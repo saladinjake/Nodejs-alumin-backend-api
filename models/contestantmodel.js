@@ -15,23 +15,31 @@ const contestantSchema = new mongoose.Schema({
         type:Date,
         default: Date.now
     },
+
+    candidates: {
+        type:Array
+    }
+
+
     // counter: {
     //     type:String,
     //     default:0
     // },
 
-    candidates: [
-    {  
-      id: {
-        type: mongoose.Types.ObjectId
-       }, 
+    // candidates: [
+    // {  
+    //   id: {
+    //     type: mongoose.Types.ObjectId
+    //    }, 
 
-       imageUrl:{
-         type:String
-       }
-    }
+    //    data:{
+    //      type:Array
+    //    }
+    // }
 
-       ]
+    //    ]
+
+
 
  
 })
