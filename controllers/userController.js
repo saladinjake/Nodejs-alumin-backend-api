@@ -63,8 +63,8 @@ exports.find = function(req, res, next) {
 
 // DELETE /api/users/:id
 exports.destroy = function(req, res, next) {
-
-  User.findByIdAndRemove(req.params.id, (err, user) => {
+ console.log(req.params.id)
+  User.findByIdAndRemove({_id:req.params.id}, (err, user) => {
     if (err || !user) {
       if (err) console.log(err);
       return res.status(404).json({

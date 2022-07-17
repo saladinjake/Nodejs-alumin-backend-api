@@ -50,9 +50,9 @@ userSchema.methods.toJSON = function() {
  * @param {string} password
  * @returns {object} callback
  */
-userSchema.methods.comparePassword = function comparePassword(password, callback) {
-  utils.compareHash(password, this.password, callback);
-};
+// userSchema.methods.comparePassword = function comparePassword(password, callback) {
+//   utils.compareHash(password, this.password, callback);
+// };
 
 
 /**
@@ -61,21 +61,21 @@ userSchema.methods.comparePassword = function comparePassword(password, callback
  * NOTE: pre & post hooks are not executed on update() and findeOneAndUpdate()
  *       http://mongoosejs.com/docs/middleware.html
  */
-userSchema.pre('save', function saveHook(next) {
-  const user = this;
+// userSchema.pre('save', function saveHook(next) {
+//   const user = this;
 
-  // Proceed further only if the password is modified or the user is new
-  if (!user.isModified('password')) return next();
+//   // Proceed further only if the password is modified or the user is new
+//   if (!user.isModified('password')) return next();
 
-  return utils.hash(user.password, (err, hash) => {
-    if (err) { return next (err); }
+//   return utils.hash(user.password, (err, hash) => {
+//     if (err) { return next (err); }
 
-    // Replace the password string with hash value
-    user.password = hash;
+//     // Replace the password string with hash value
+//     user.password = hash;
 
-    return next();
-  });
-});
+//     return next();
+//   });
+// });
 
 
 mongoose.model("User",userSchema)
