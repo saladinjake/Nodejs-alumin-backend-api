@@ -31,11 +31,31 @@ router.get('/', rolesChecker([Roles.admin,Roles.siteAdmin, Roles.user]), (req, r
 
 
 })
+
+
+router.get('/:id', rolesChecker([Roles.admin,Roles.siteAdmin, Roles.user]), (req, res) =>
+{
+           console.log(req.params.id)
+  Contestants.find({_id:req.params.id}, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        errors: [JSON.stringify(err)]
+      });
+    }
+
+    return res.json(result);
+  });
+
+
+})
+
 //For Registering Contestants
 
 router.post("/", (req, res) => {
   
-    const {position,party, imageUrl , dateVal, contestants} = req.body 
+    const {position,party, imageUrl , dateVal, contestants, detail} = req.body 
     if(!position || !contestants || !party){
        return res.status(422).json({error:"Position/Title or type and candidates are required"}) 
     }
@@ -45,6 +65,7 @@ router.post("/", (req, res) => {
         position,
         party,
         reg_time:dateVal,
+        detail,
         //candidates:[{id: userIds, data: userIds}] 
         candidates: contestants   
     })

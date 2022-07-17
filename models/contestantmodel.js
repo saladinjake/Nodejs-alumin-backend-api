@@ -8,6 +8,10 @@ const contestantSchema = new mongoose.Schema({
      party:{
         type:String,
     },
+
+    detail:{
+        type:String
+    },
     
    
     
