@@ -22,7 +22,13 @@ const contestantSchema = new mongoose.Schema({
 
     candidates: {
         type:Array
-    }
+    },
+
+
+
+    votes: {
+        type:Object // takes an array of user id and an array of contestants ids with respective counters that updates
+    },
 
 
     // counter: {
